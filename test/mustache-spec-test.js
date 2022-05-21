@@ -1,4 +1,8 @@
 require('./helper');
+var chai = require('chai');
+var chaiAsPromised = require('chai-as-promised');
+
+chai.use(chaiAsPromised);
 
 var fs = require('fs');
 var path = require('path');
@@ -80,7 +84,7 @@ describe('Mustache spec compliance', function () {
           if (test.data.lambda && test.data.lambda.__tag__ === 'code')
             test.data.lambda = eval('(function() { return ' + test.data.lambda.js + '; })');
           var output = Mustache.render(test.template, test.data, test.partials);
-          assert.equal(output, test.expected);
+          assert.eventually.equal(output, test.expected);
         });
       });
     });

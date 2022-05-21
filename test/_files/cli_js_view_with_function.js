@@ -1,8 +1,8 @@
 module.exports = {
   'name': 'Tater',
   'bold': function () {
-    return function (text, render) {
-      return '<b>' + render(text) + '</b>';
+    return async function (text, render) {
+      return '<b>' + (await render(text)) + '</b>';
     };
   }
 };
